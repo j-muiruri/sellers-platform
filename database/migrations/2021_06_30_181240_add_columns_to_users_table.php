@@ -21,6 +21,10 @@ class AddColumnsToUsersTable extends Migration
                 $table->bigInteger('phone')->nullable();
                 $table->string('address', 100)->nullable();
                 $table->enum('role', ['admin', 'seller'])->default('seller');
+
+                // indexes
+                $table->unique('email');
+                $table->unique('phone');
             });
         });
     }
@@ -33,7 +37,8 @@ class AddColumnsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['gender', 'dob', 'phone', 'address']);
+            $table->dropColumn(['gender', 'dob', 'phone', 'address', 'role']);
+            $table->dropUnique(['email', 'phone']);
         });
     }
 }
