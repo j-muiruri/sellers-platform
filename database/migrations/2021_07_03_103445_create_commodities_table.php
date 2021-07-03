@@ -19,7 +19,6 @@ class CreateCommoditiesTable extends Migration
             $table->string('description', 255);
             //foreign keys
             $table->foreignId('seller_id')->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
             
             $table->bigInteger('price');
             $table->bigInteger('minimum_amount');
