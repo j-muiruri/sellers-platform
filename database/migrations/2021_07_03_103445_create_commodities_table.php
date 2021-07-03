@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGoodsTable extends Migration
+class CreateCommoditiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateGoodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('goods', function (Blueprint $table) {
+        Schema::create('commodities', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
             $table->string('description', 255);
@@ -23,10 +23,9 @@ class CreateGoodsTable extends Migration
             
             $table->bigInteger('price');
             $table->bigInteger('minimum_amount');
+            $table->enum('type', ['goods', 'services']);
             $table->json('exchange_for', 255);// key=good/service; value=goods/service id
             $table->timestamps();
-
-            
         });
     }
 
@@ -37,6 +36,6 @@ class CreateGoodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('goods');
+        Schema::dropIfExists('commodities');
     }
 }
