@@ -11,8 +11,10 @@ class Commodities extends Model
 
     protected $table = 'commodities';
 
+    protected $fillable = ['name','description','seller_id','price','minimum_amount','type','exchange_for'];
+
     /**
-     * The users that belong to the role.
+     * The commodity belongs to categories
      */
     public function categories()
     {

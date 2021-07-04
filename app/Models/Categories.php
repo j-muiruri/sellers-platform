@@ -11,8 +11,11 @@ class Categories extends Model
 
     protected $table = 'categories';
 
+    protected $fillable = ['name','description','type','main','sub'];
+
     /**
-     * Get commodities belonging to category
+     * Get categories belonging to commodities
+     * 
      */
 
     public function commodities()

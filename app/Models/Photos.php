@@ -11,6 +11,8 @@ class Photos extends Model
 
     protected $table = 'photos';
 
+    protected $fillable = ['name','path','commodity_id'];
+
     /**
      * The users that belong to the role.
      */
