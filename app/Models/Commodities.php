@@ -18,7 +18,7 @@ class Commodities extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany(Categories::class);
+        return $this->belongsToMany(SubCategories::class, 'category_commodity', 'commodity_id','category_id');
     }
 
     /**
