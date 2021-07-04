@@ -11,16 +11,15 @@ class Categories extends Model
 
     protected $table = 'categories';
 
-    protected $fillable = ['name','description','type','main','sub'];
+    protected $fillable = ['name'];
 
     /**
-     * Get categories belonging to commodities
+     * Get subCategories for a Category
      * 
      */
-
-    public function commodities()
+    public function subCategories()
     {
-        return $this->belongsToMany(Commodities::class);
+        return $this->hasMany(SubCategories::class);
     }
 }
 
