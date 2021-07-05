@@ -28,6 +28,6 @@ class SubCategories extends Model
 
     public function commodities()
     {
-        return $this->belongsToMany(Commodities::class, 'category_commodity', 'category_id','commodity_id');
+        return $this->hasMany(Commodities::class);
     }
 }

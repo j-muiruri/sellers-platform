@@ -14,11 +14,19 @@ class Commodities extends Model
     protected $fillable = ['name','description','seller_id','price','minimum_amount','type','exchange_for'];
 
     /**
+     * The users that belong to the role.
+     */
+    public function sellers()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * The commodity belongs to categories
      */
     public function categories()
     {
-        return $this->belongsToMany(SubCategories::class, 'category_commodity', 'commodity_id','category_id');
+        return $this->belongsTo(SubCategories::class, 'category_commodity', 'commodity_id','category_id');
     }
 
     /**
