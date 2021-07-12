@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commodities;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class GoodsController extends Controller
 {
@@ -12,6 +12,7 @@ class GoodsController extends Controller
     public function __construct()
     {
         $this->db = new Commodities;
+        $this->middleware('auth');
     }
 
     public function index()
@@ -48,7 +49,7 @@ class GoodsController extends Controller
      */
     public function create(Request $request)
     {
-        $validation = $request->data->validator([
+        $validation = Validator::make($request->all(), [
             'name' => 'bail|required|max:255',
             'description' => 'required|max:255',
             'seller_id' => 'required|integer',
@@ -90,7 +91,7 @@ class GoodsController extends Controller
      */
     public function update(Request $request)
     {
-        $validation = $request->data->validator([
+        $validation = Validator::make($request->all(), [
             'name' => 'bail|required|max:255',
             'description' => 'required|max:255',
             'seller_id' => 'required|integer',
