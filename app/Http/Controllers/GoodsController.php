@@ -12,7 +12,7 @@ class GoodsController extends Controller
     public function __construct()
     {
         $this->db = new Commodities;
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()

@@ -49,4 +49,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Commodities::class);
     }
+
+    /**
+     * Scope a query to only Sellers.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSeller($query)
+    {
+        return $query->where('role', 'seller');
+    }
 }

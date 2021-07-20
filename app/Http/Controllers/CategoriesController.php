@@ -20,8 +20,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $data = Categories::all();
-        return view('', $data);
+        $data = Categories::all()->toArray();
+        return $data;
     }
 
     /**
