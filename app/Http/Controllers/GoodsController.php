@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\Commodities;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,10 +19,11 @@ class GoodsController extends Controller
 
     public function index()
     {
-        $data = $this->db->get();
-
+        $data = $this->db->with(['seller', 'category'])->get();
+        logger($data);
         if(!empty($data)) {
-            $data->toArray();
+            return $data->toArray();
+            logger($data);
         }
         // return view('');
     }

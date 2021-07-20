@@ -16,17 +16,17 @@ class Commodities extends Model
     /**
      * The users that belong to the role.
      */
-    public function sellers()
+    public function seller()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'seller_id');
     }
 
     /**
      * The commodity belongs to categories
      */
-    public function categories()
+    public function category()
     {
-        return $this->belongsTo(SubCategories::class, 'category_commodity', 'commodity_id','category_id');
+        return $this->belongsTo(SubCategories::class, 'category_id');
     }
 
     /**
