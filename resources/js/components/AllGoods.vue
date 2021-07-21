@@ -12,8 +12,7 @@
                 <th>Category</th>
                 <th>Price</th>
                 <th>Minimum Amount</th>
-                <th>Exchange Commodity Type</th>
-                <th>Exchange for commodity </th>
+                <th>Exchange For</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -25,8 +24,12 @@
                 <td>{{ good.seller.name }}</td>
                 <td>{{ good.category.name }}</td>
                 <td>{{ good.price }}</td>
-                <td>{{ Object.keys(JSON.parse(good.exchange_for)) }}</td>
-                <td>{{ Object.keys(JSON.parse(good.exchange_for)) }}</td>
+                <td>{{ good.minimum_amount }}</td>
+                <td> 
+                    <div v-for="(value, key) in good.exchange_for" :key="key">
+                <p><strong>Type:</strong> {{ key }}</p> 
+                <p><strong>Commodity:</strong> {{ value }}</p>
+                    </div>
                 <td>
                     <div class="btn-group" role="group">
                         <router-link :to="{name: 'edit', params: { id: good.id }}" class="btn btn-primary">Edit

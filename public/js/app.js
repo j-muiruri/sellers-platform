@@ -38349,16 +38349,23 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(good.minimum_amount))]),
             _vm._v(" "),
-            _c("strong", [_vm._v("Commodity Type:")]),
-            _vm._v(
-              "\n            " +
-                _vm._s(JSON.parse(good.exhange_for)) +
-                "\n            " +
-                _vm._s(good.exchange_for[1]) +
-                "\n            "
+            _c(
+              "td",
+              _vm._l(good.exchange_for, function(value, key) {
+                return _c("div", { key: key }, [
+                  _c("p", [
+                    _c("strong", [_vm._v("Type:")]),
+                    _vm._v(" " + _vm._s(key))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c("strong", [_vm._v("Commodity:")]),
+                    _vm._v(" " + _vm._s(value))
+                  ])
+                ])
+              }),
+              0
             ),
-            _c("br"),
-            _vm._v(" "),
             _c("td", [
               _c(
                 "div",
@@ -38417,7 +38424,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Minimum Amount")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Exchange for")]),
+        _c("th", [_vm._v("Exchange For")]),
         _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])

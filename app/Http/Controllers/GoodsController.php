@@ -20,10 +20,14 @@ class GoodsController extends Controller
     public function index()
     {
         $data = $this->db->with(['seller', 'category'])->get();
-        logger($data);
+        
         if(!empty($data)) {
+            foreach ($data as $good) {
+                
+                $good->exchange_for = json_decode($good->exchange_for, true);
+            }
+            // logger($data);
             return $data->toArray();
-            logger($data);
         }
         // return view('');
     }
