@@ -1924,33 +1924,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       good: {},
       sellers: [],
-      categories: []
+      categories: [],
+      errors: []
     };
   },
-  methods: {
-    created: function created() {
-      var _this = this;
+  created: function created() {
+    var _this = this;
 
-      this.axios.get('http://localhost:8000/api/sellers').then(function (response) {
-        _this.sellers = response.data;
-      });
-      this.axios.get('http://localhost:8000/api/categories').then(function (response) {
-        _this.categories = response.data;
-      });
-    },
+    this.axios.get("http://localhost:8000/api/sellers").then(function (response) {
+      _this.sellers = response.data;
+      console.log(response);
+    });
+    this.axios.get("http://localhost:8000/api/categories").then(function (response) {
+      _this.categories = response.data;
+    });
+  },
+  methods: {
     addPost: function addPost() {
       var _this2 = this;
 
-      this.axios.post('http://localhost:8000/api/good/add', this.good).then(function (response) {
-        return _this2.$router.push({
-          name: 'home'
-        }) // console.log(response.data)
-        ;
+      this.axios.post("http://localhost:8000/api/good/add", this.good).then(function (response) {
+        if (response.data.status == false) {
+          _this2.errors = response.data.error;
+        } else {
+          _this2.$router.push({
+            name: "home"
+          });
+        } // console.log(response.data)
+
       })["catch"](function (error) {
         return console.log(error);
       })["finally"](function () {
@@ -38074,6 +38086,20 @@ var render = function() {
             }
           },
           [
+            _vm.errors != null
+              ? _c("p", [
+                  _c("b", [_vm._v("Please correct the following error(s):")]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    _vm._l(_vm.errors, function(error) {
+                      return _c("li", { key: error }, [_vm._v(_vm._s(error))])
+                    }),
+                    0
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Name")]),
               _vm._v(" "),
@@ -38087,7 +38113,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text" },
+                attrs: { type: "text", required: "" },
                 domProps: { value: _vm.good.name },
                 on: {
                   input: function($event) {
@@ -38113,7 +38139,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text" },
+                attrs: { type: "text", required: "" },
                 domProps: { value: _vm.good.description },
                 on: {
                   input: function($event) {
@@ -38139,7 +38165,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "" },
+                attrs: { type: "", required: "" },
                 domProps: { value: _vm.good.price },
                 on: {
                   input: function($event) {
@@ -38165,7 +38191,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text" },
+                attrs: { type: "text", required: "" },
                 domProps: { value: _vm.good.minimum_price },
                 on: {
                   input: function($event) {
@@ -38191,7 +38217,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text" },
+                attrs: { type: "text", required: "" },
                 domProps: { value: _vm.good.exchange_for },
                 on: {
                   input: function($event) {
@@ -38218,6 +38244,8 @@ var render = function() {
                       expression: "good.seller_id"
                     }
                   ],
+                  staticClass: "form-control",
+                  attrs: { required: "" },
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -38261,6 +38289,8 @@ var render = function() {
                       expression: "good.category_id"
                     }
                   ],
+                  staticClass: "form-control",
+                  attrs: { required: "" },
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter

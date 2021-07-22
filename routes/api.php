@@ -22,7 +22,7 @@ Route::get('goods', 'GoodsController@index');
 Route::get('sellers', 'SellersController@index');
 Route::get('categories', 'CategoriesController@index');
 Route::group(['prefix' => 'good'], function () {
-    Route::post('add', 'GoodsController@add');
+    Route::post('add', 'GoodsController@create');
     Route::get('edit/{id}', 'GoodsController@view');
     Route::post('update/{id}', 'GoodsController@update');
     Route::delete('delete/{id}', 'GoodsController@delete');

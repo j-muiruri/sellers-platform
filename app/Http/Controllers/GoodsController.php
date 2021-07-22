@@ -74,7 +74,7 @@ class GoodsController extends Controller
             return response([
                 'status' => false,
                 'error' => $errors
-            ], 404);
+            ]);
         } else {
             $request->data->type = 'goods';
 
